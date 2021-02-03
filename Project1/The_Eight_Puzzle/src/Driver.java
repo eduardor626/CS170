@@ -42,8 +42,6 @@ public class Driver {
         System.out.println("Enter the third row, use space or tabs between numbers: ");
         String thirdRow = input.nextLine();
         thirdRow = thirdRow.replaceAll("\\s", "");
-        System.out.println("--- Puzzle ---");
-        System.out.println(firstRow+"\n"+secondRow+"\n"+thirdRow);
         puzzle.add(firstRow);
         puzzle.add(secondRow);
         puzzle.add(thirdRow);
@@ -80,6 +78,12 @@ public class Driver {
         int option = input.nextInt();
         input.nextLine();
         ArrayList<String> userPuzzle = new ArrayList<String>(getInput());
+
+        if(!userPuzzle.isEmpty()){
+            Board slidingPuzzle = new Board(userPuzzle);
+            slidingPuzzle.print();
+
+        }
         int algorithm = whichAlgorithm();
         return createAlgorithm(algorithm);
     }
