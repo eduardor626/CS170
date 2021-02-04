@@ -82,6 +82,18 @@ public class Driver {
         if(!userPuzzle.isEmpty()){
             Board slidingPuzzle = new Board(userPuzzle);
             slidingPuzzle.print();
+            System.out.println("-- Goal State --");
+            slidingPuzzle.printGoalState();
+
+            System.out.println("Creating board --");
+            Board other = new Board(slidingPuzzle.getBoard());
+
+            System.out.println("generating friends");
+            Iterable<Board> friends = new ArrayList<Board>((Collection<? extends Board>) other.neighbors());
+            for(Board el: friends){
+                System.out.println("--One friend--");
+                el.print();
+            }
 
         }
         int algorithm = whichAlgorithm();
