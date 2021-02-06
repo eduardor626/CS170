@@ -52,11 +52,16 @@ public class Driver {
         return puzzle;
     }
 
-    public static int createAlgorithm(int algorithm){
+
+    public static int createAlgorithm(int algorithm, Board b){
+
         switch(algorithm)
         {
             case 1:
                 System.out.println("Uniform Cost Search");
+                UCSNode uniformCostNode = new UCSNode(null,b,0);
+
+
                 return 1;
             case 2:
                 System.out.println("A* w/ Misplaced Tile Search");
@@ -89,15 +94,35 @@ public class Driver {
             Board other = new Board(slidingPuzzle.getBoard());
 
             System.out.println("generating friends");
-            Iterable<Board> friends = new ArrayList<Board>((Collection<? extends Board>) other.neighbors());
+            Iterable<Board> friends = new ArrayList<Board>();
+            friends = other.neighbors();
             for(Board el: friends){
                 System.out.println("--One friend--");
                 el.print();
             }
+            int algorithm = whichAlgorithm();
+            return createAlgorithm(algorithm, other);
+
+        }else
+        {
+            return -1;
+        }
+
+    }
+
+
+
+    public static boolean general_search(UCSNode n){
+
+        PriorityQueue<UCSNode> nodes = new PriorityQueue<UCSNode>();
+        nodes.add(n);
+        while(!nodes.isEmpty())
+        {
+            UCSNode node = nodes.remove();
+            
 
         }
-        int algorithm = whichAlgorithm();
-        return createAlgorithm(algorithm);
+        return false;
     }
     
 

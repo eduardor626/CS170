@@ -5,7 +5,7 @@ import java.util.List;
 public class Board {
 
     private Integer [][] board = new Integer[3][3];
-    private int priority = Integer.MAX_VALUE;
+    private int depth = Integer.MAX_VALUE;
     private Integer[][] goalBoard = new Integer[3][3];
 
     public Board(ArrayList<String> puzzle){
@@ -15,6 +15,7 @@ public class Board {
             }
         }
         createGoalBoard();
+        depth = 0;
     }
 
     public Board(Integer [][] board){
@@ -63,21 +64,25 @@ public class Board {
         return true;
     }
 
-    public Iterable<Board> neighbors(){
+    public ArrayList<Board> neighbors(){
         ArrayList<Board> friends = new ArrayList<Board>();
+
         char [] moves = {'U','D','L','R'};
         for(int i = 0; i < moves.length; i++){
             Board insertMe = new Board(swap(moves[i], this.board));
-            if(insertMe != null)
+            if(insertMe.getBoard() != null)
                 friends.add(insertMe);
         }
 
         return friends;
     }
 
-    public Integer[][] swap(char move, Integer[][] arr){
-        Integer[][] nextPuzzle = new Integer[arr.length][arr.length];
 
+
+    public Integer[][] swap(char move, Integer[][] arr){
+
+        Integer[][] nextPuzzle = new Integer[arr.length][arr.length];
+        //deep copy
         for(int i = 0 ; i < arr.length; i++){
             for(int j = 0; j < arr.length; j++){
                 nextPuzzle[i][j] = arr[i][j];
@@ -87,38 +92,49 @@ public class Board {
 
         for(int i =0; i < arr.length; i++){
             for(int j = 0; j < arr.length; j++){
-
                 if(nextPuzzle[i][j] == 0){
                     switch(move)
                     {
                         case 'U':
                             if(isValid(i-1,j)){
+                                System.out.println("Up");
                                 Integer temp = nextPuzzle[i-1][j];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i-1][j] = 0;
                                 return nextPuzzle;
                             }
+                            break;
                         case 'D':
                             if(isValid(i+1,j)){
+                                System.out.println("Down");
+
                                 Integer temp = nextPuzzle[i+1][j];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i+1][j] = 0;
                                 return nextPuzzle;
+
                             }
+                            break;
                         case 'L':
                             if(isValid(i,j-1)){
+                                System.out.println("Left");
                                 Integer temp = nextPuzzle[i][j-1];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i][j-1] = 0;
                                 return nextPuzzle;
                             }
+                            break;
                         case 'R':
                             if(isValid(i,j+1)){
+                                System.out.println("Right");
                                 Integer temp = nextPuzzle[i][j+1];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i][j+1] = 0;
                                 return nextPuzzle;
                             }
+                            break;
+                        default:
+                            break;
                     }
                     return nextPuzzle;
                 }
