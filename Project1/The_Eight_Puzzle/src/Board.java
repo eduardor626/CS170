@@ -20,9 +20,7 @@ public class Board {
 
     public Board(Integer [][] board){
         for(int i = 0 ; i < board.length; i++){
-            for(int j = 0; j < board.length; j++){
-                this.board[i][j] = board[i][j];
-            }
+            System.arraycopy(board[i], 0, this.board[i], 0, board.length);
         }
         createGoalBoard();
     }
@@ -50,27 +48,25 @@ public class Board {
     }
 
     public void printGoalState(){
-        for(int i = 0; i < goalBoard.length; i++){
-            for(int j = 0 ; j < goalBoard.length; j++){
-                System.out.print(goalBoard[i][j]+" ");
+        for (Integer[] integers : goalBoard) {
+            for (int j = 0; j < goalBoard.length; j++) {
+                System.out.print(integers[j] + " ");
             }
             System.out.println();
         }
     }
 
     public boolean isValid(int x, int y){
-        if(x < 0 || y < 0 || x > 2 || y > 2)
-            return false;
-        return true;
+        return x >= 0 && y >= 0 && x <= 2 && y <= 2;
     }
 
     public ArrayList<Board> neighbors(){
         ArrayList<Board> friends = new ArrayList<Board>();
 
         char [] moves = {'U','D','L','R'};
-        for(int i = 0; i < moves.length; i++){
-            Board insertMe = new Board(swap(moves[i], this.board));
-            if(insertMe.getBoard() != null)
+        for (char move : moves) {
+            Board insertMe = new Board(swap(move, this.board));
+            if (insertMe.getBoard() != null)
                 friends.add(insertMe);
         }
 
@@ -84,9 +80,7 @@ public class Board {
         Integer[][] nextPuzzle = new Integer[arr.length][arr.length];
         //deep copy
         for(int i = 0 ; i < arr.length; i++){
-            for(int j = 0; j < arr.length; j++){
-                nextPuzzle[i][j] = arr[i][j];
-            }
+            System.arraycopy(arr[i], 0, nextPuzzle[i], 0, arr.length);
         }
 
 
@@ -142,6 +136,10 @@ public class Board {
         }
         return nextPuzzle;
 
+    }
+
+    public int getDepth() {
+        return depth;
     }
 
     // is current state of board equal to the goal state of the board

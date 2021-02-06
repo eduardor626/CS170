@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Driver {
@@ -113,13 +112,20 @@ public class Driver {
 
 
     public static boolean general_search(UCSNode n){
-
         PriorityQueue<UCSNode> nodes = new PriorityQueue<UCSNode>();
         nodes.add(n);
         while(!nodes.isEmpty())
         {
             UCSNode node = nodes.remove();
-            
+            if (node.isSolved()){
+                System.out.print("Solved the puzzle");
+                return true;
+            }
+            ArrayList<Board> friends = new ArrayList<>();
+            friends = node.get().neighbors();
+            for(Board el : friends){
+                nodes.add(new UCSNode(node,el,el.getDepth()+1));
+            }
 
         }
         return false;
