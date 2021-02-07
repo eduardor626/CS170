@@ -2,6 +2,8 @@ import java.util.*;
 
 public class Driver {
 
+    private static Stack<Board> moves;
+
     public static int whichAlgorithm(){
         System.out.println("Enter your choice of algorithm");
         System.out.println("1. Uniform Cost Search");
@@ -52,6 +54,39 @@ public class Driver {
     }
 
 
+    public static boolean general_search(UCSNode n){
+        PriorityQueue<UCSNode> nodes = new PriorityQueue<UCSNode>();
+        ArrayList<Board> friends = new ArrayList<>();
+        moves = new Stack<>();
+        nodes.add(n);
+        while(!nodes.isEmpty())
+        {
+            UCSNode node = nodes.remove();
+            node.get().print();
+            System.out.println();
+            if (node.isSolved()){
+                System.out.print("Solved the puzzle: ");
+                System.out.println("Depth: "+node.getDepth());
+                moves.add(node.get());
+                UCSNode prev = node.getPrev();
+                while(prev != null){
+                    moves.add(prev.get());
+                    prev = prev.getPrev();
+                }
+
+                return true;
+
+            }
+            friends = new ArrayList<>();
+            friends = node.get().neighbors();
+            for(Board el : friends){
+                nodes.add(new UCSNode(node,el,node.getDepth()+1));
+            }
+
+        }
+        return false;
+    }
+
     public static int createAlgorithm(int algorithm, Board b){
 
         switch(algorithm)
@@ -59,7 +94,7 @@ public class Driver {
             case 1:
                 System.out.println("Uniform Cost Search");
                 UCSNode uniformCostNode = new UCSNode(null,b,0);
-
+                System.out.println(general_search(uniformCostNode));
 
                 return 1;
             case 2:
@@ -109,31 +144,13 @@ public class Driver {
 
     }
 
-
-
-    public static boolean general_search(UCSNode n){
-        PriorityQueue<UCSNode> nodes = new PriorityQueue<UCSNode>();
-        nodes.add(n);
-        while(!nodes.isEmpty())
-        {
-            UCSNode node = nodes.remove();
-            if (node.isSolved()){
-                System.out.print("Solved the puzzle");
-                return true;
-            }
-            ArrayList<Board> friends = new ArrayList<>();
-            friends = node.get().neighbors();
-            for(Board el : friends){
-                nodes.add(new UCSNode(node,el,el.getDepth()+1));
-            }
-
-        }
-        return false;
-    }
-    
-
     public static void main(String[] args) {
         welcomeMessage();
+
+        while(!moves.isEmpty()){
+            System.out.println("-- Next Board --");
+            moves.pop().print();
+        }
 
     }
 }
