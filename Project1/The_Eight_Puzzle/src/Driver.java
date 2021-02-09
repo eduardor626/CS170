@@ -2,7 +2,8 @@ import java.util.*;
 
 public class Driver {
 
-    private static Stack<Board> moves;
+    private static Stack<Board> moves = new Stack<>();
+    private static int maxQueueSize = 0;
 
     public static int whichAlgorithm(){
         System.out.println("Enter your choice of algorithm");
@@ -54,19 +55,21 @@ public class Driver {
     }
 
 
+    /*
+    The head of the priority queue is the least element based on the natural ordering
+    or comparator based ordering.
+     */
     public static boolean general_search(UCSNode n){
         PriorityQueue<UCSNode> nodes = new PriorityQueue<UCSNode>();
         ArrayList<Board> friends = new ArrayList<>();
-        moves = new Stack<>();
         nodes.add(n);
         while(!nodes.isEmpty())
         {
             UCSNode node = nodes.remove();
-            node.get().print();
-            System.out.println();
             if (node.isSolved()){
-                System.out.print("Solved the puzzle: ");
                 System.out.println("Depth: "+node.getDepth());
+                System.out.println("Maximum number of nodes in the queue: "+maxQueueSize);
+
                 moves.add(node.get());
                 UCSNode prev = node.getPrev();
                 while(prev != null){
@@ -82,7 +85,36 @@ public class Driver {
             for(Board el : friends){
                 nodes.add(new UCSNode(node,el,node.getDepth()+1));
             }
+            maxQueueSize = Math.max(maxQueueSize,nodes.size());
 
+        }
+        return false;
+    }
+
+    public static boolean general_search_misplaced(MisplacedTileNode n){
+        PriorityQueue<MisplacedTileNode> nodes = new PriorityQueue<MisplacedTileNode>();
+        ArrayList<Board> friends = new ArrayList<>();
+        nodes.add(n);
+        while(!nodes.isEmpty())
+        {
+            MisplacedTileNode node = nodes.remove();
+            if (node.isSolved()){
+                System.out.println("Depth: "+node.getDepth());
+                System.out.println("Maximum number of nodes in the queue: "+maxQueueSize);
+                moves.add(node.get());
+                MisplacedTileNode prev = node.getPrev();
+                while(prev != null){
+                    moves.add(prev.get());
+                    prev = prev.getPrev();
+                }
+                return true;
+            }
+            friends = new ArrayList<>();
+            friends = node.get().neighbors();
+            for(Board el : friends){
+                nodes.add(new MisplacedTileNode(node,el,node.getDepth()+1));
+            }
+            maxQueueSize = Math.max(maxQueueSize,nodes.size());
         }
         return false;
     }
@@ -95,13 +127,16 @@ public class Driver {
                 System.out.println("Uniform Cost Search");
                 UCSNode uniformCostNode = new UCSNode(null,b,0);
                 System.out.println(general_search(uniformCostNode));
-
                 return 1;
             case 2:
                 System.out.println("A* w/ Misplaced Tile Search");
+                MisplacedTileNode misplaced = new MisplacedTileNode(null,b,0);
+                System.out.println(general_search_misplaced(misplaced));
                 return 2;
             case 3:
                 System.out.println("A* w/ Manhattan Distance Search");
+                ManhattanDistNode manhattan = new ManhattanDistNode(null,b,0);
+                System.out.println("manhattan dist = "+manhattan.manhattan());
                 return 3;
             default:
                 System.out.println("Error: Invalid Algorithm");
@@ -120,22 +155,9 @@ public class Driver {
 
         if(!userPuzzle.isEmpty()){
             Board slidingPuzzle = new Board(userPuzzle);
-            slidingPuzzle.print();
-            System.out.println("-- Goal State --");
-            slidingPuzzle.printGoalState();
 
-            System.out.println("Creating board --");
-            Board other = new Board(slidingPuzzle.getBoard());
-
-            System.out.println("generating friends");
-            Iterable<Board> friends = new ArrayList<Board>();
-            friends = other.neighbors();
-            for(Board el: friends){
-                System.out.println("--One friend--");
-                el.print();
-            }
             int algorithm = whichAlgorithm();
-            return createAlgorithm(algorithm, other);
+            return createAlgorithm(algorithm, slidingPuzzle);
 
         }else
         {

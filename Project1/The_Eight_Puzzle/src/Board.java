@@ -47,6 +47,30 @@ public class Board {
         this.goalBoard[2][2] = 0;
     }
 
+    public Integer[][] getGoalBoard(){
+        return this.goalBoard;
+    }
+
+    public int findGoalRow(int value){
+        for(int i =0; i < goalBoard.length; i++){
+            for(int j = 0; j < goalBoard.length; j++){
+                if(goalBoard[i][j] == value)
+                    return i;
+            }
+        }
+        return -1;
+    }
+
+    public int findGoalCol(int value){
+        for(int i =0; i < goalBoard.length; i++){
+            for(int j = 0; j < goalBoard.length; j++){
+                if(goalBoard[i][j] == value)
+                    return j;
+            }
+        }
+        return -1;
+    }
+
     public void printGoalState(){
         for (Integer[] integers : goalBoard) {
             for (int j = 0; j < goalBoard.length; j++) {
@@ -91,7 +115,6 @@ public class Board {
                     {
                         case 'U':
                             if(isValid(i-1,j)){
-                                System.out.println("Up");
                                 Integer temp = nextPuzzle[i-1][j];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i-1][j] = 0;
@@ -100,8 +123,6 @@ public class Board {
                             break;
                         case 'D':
                             if(isValid(i+1,j)){
-                                System.out.println("Down");
-
                                 Integer temp = nextPuzzle[i+1][j];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i+1][j] = 0;
@@ -111,7 +132,6 @@ public class Board {
                             break;
                         case 'L':
                             if(isValid(i,j-1)){
-                                System.out.println("Left");
                                 Integer temp = nextPuzzle[i][j-1];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i][j-1] = 0;
@@ -120,7 +140,6 @@ public class Board {
                             break;
                         case 'R':
                             if(isValid(i,j+1)){
-                                System.out.println("Right");
                                 Integer temp = nextPuzzle[i][j+1];
                                 nextPuzzle[i][j] = temp;
                                 nextPuzzle[i][j+1] = 0;
