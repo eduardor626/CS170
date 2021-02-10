@@ -52,6 +52,6 @@ public class ManhattanDistNode implements  Comparable<ManhattanDistNode>{
 
     @Override
     public int compareTo(ManhattanDistNode o) {
-        return 0;
+        return Integer.compare(this.getDepth()+this.manhattan(),o.getDepth()+o.manhattan());
     }
 }

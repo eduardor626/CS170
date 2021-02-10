@@ -119,6 +119,35 @@ public class Driver {
         return false;
     }
 
+
+    public static boolean general_search_manhattan(ManhattanDistNode n){
+        PriorityQueue<ManhattanDistNode> nodes = new PriorityQueue<ManhattanDistNode>();
+        ArrayList<Board> friends = new ArrayList<>();
+        nodes.add(n);
+        while(!nodes.isEmpty())
+        {
+            ManhattanDistNode node = nodes.remove();
+            if (node.isSolved()){
+                System.out.println("Depth: "+node.getDepth());
+                System.out.println("Maximum number of nodes in the queue: "+maxQueueSize);
+                moves.add(node.get());
+                ManhattanDistNode prev = node.getPrev();
+                while(prev != null){
+                    moves.add(prev.get());
+                    prev = prev.getPrev();
+                }
+                return true;
+            }
+            friends = new ArrayList<>();
+            friends = node.get().neighbors();
+            for(Board el : friends){
+                nodes.add(new ManhattanDistNode(node,el,node.getDepth()+1));
+            }
+            maxQueueSize = Math.max(maxQueueSize,nodes.size());
+        }
+        return false;
+    }
+
     public static int createAlgorithm(int algorithm, Board b){
 
         switch(algorithm)
@@ -136,10 +165,10 @@ public class Driver {
             case 3:
                 System.out.println("A* w/ Manhattan Distance Search");
                 ManhattanDistNode manhattan = new ManhattanDistNode(null,b,0);
-                System.out.println("manhattan dist = "+manhattan.manhattan());
+                System.out.println(general_search_manhattan(manhattan));
                 return 3;
             default:
-                System.out.println("Error: Invalid Algorithm");
+                System.out.println("Error: Invalid Algorithm entered");
                 break;
         }
         return -1;

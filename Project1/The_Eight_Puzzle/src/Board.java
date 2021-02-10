@@ -29,14 +29,6 @@ public class Board {
         return this.board;
     }
 
-    public Iterable<Board> expand(ArrayList<Character> moves){
-        ArrayList<Board> neighbors = new ArrayList<Board>();
-        for(Character el: moves){
-            neighbors.add(new Board(swap(el,this.getBoard())));
-        }
-        return neighbors;
-    }
-
     public void createGoalBoard(){
         int val = 1;
         for(int i = 0 ; i < goalBoard.length; i++){
@@ -90,10 +82,9 @@ public class Board {
         char [] moves = {'U','D','L','R'};
         for (char move : moves) {
             Board insertMe = new Board(swap(move, this.board));
-            if (insertMe.getBoard() != null)
+            if (!Arrays.deepEquals(insertMe.getBoard(), this.board))
                 friends.add(insertMe);
         }
-
         return friends;
     }
 
