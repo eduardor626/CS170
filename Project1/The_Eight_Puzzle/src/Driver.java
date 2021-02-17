@@ -62,13 +62,21 @@ public class Driver {
     public static boolean general_search(UCSNode n){
         PriorityQueue<UCSNode> nodes = new PriorityQueue<UCSNode>();
         ArrayList<Board> friends = new ArrayList<>();
+        int expandedNodes = 0;
+
         nodes.add(n);
         while(!nodes.isEmpty())
         {
             UCSNode node = nodes.remove();
+            expandedNodes++;
+            System.out.println("The best state to expand with a g(n)="+node.getDepth()+" is:");
+            node.get().print();
+
             if (node.isSolved()){
-                System.out.println("Depth: "+node.getDepth());
-                System.out.println("Maximum number of nodes in the queue: "+maxQueueSize);
+                System.out.println("Goal!!");
+                System.out.println("The Depth of the goal node was: "+node.getDepth());
+                System.out.println("Maximum number of nodes in the queue at any one time: "+maxQueueSize);
+                System.out.println("To solve this problem the search alg. expanded a total of "+expandedNodes+" nodes.");
 
                 moves.add(node.get());
                 UCSNode prev = node.getPrev();
@@ -83,7 +91,12 @@ public class Driver {
             friends = new ArrayList<>();
             friends = node.get().neighbors();
             for(Board el : friends){
-                nodes.add(new UCSNode(node,el,node.getDepth()+1));
+                if(node.getPrev() != null && !(Arrays.deepEquals(node.getPrev().get().getBoard(),el.getBoard()))){
+                    nodes.add(new UCSNode(node,el,node.getDepth()+1));
+                }else if(node.getPrev() == null){
+                    nodes.add(new UCSNode(node,el,node.getDepth()+1));
+                }
+
             }
             maxQueueSize = Math.max(maxQueueSize,nodes.size());
 
@@ -94,13 +107,21 @@ public class Driver {
     public static boolean general_search_misplaced(MisplacedTileNode n){
         PriorityQueue<MisplacedTileNode> nodes = new PriorityQueue<MisplacedTileNode>();
         ArrayList<Board> friends = new ArrayList<>();
+        int expandedNodes = 0;
         nodes.add(n);
         while(!nodes.isEmpty())
         {
             MisplacedTileNode node = nodes.remove();
+            expandedNodes++;
+            System.out.println("The best state to expand with a g(n)="+node.getDepth()+" and h(n)="+node.getMisplaced()+" is:");
+            node.get().print();
+
             if (node.isSolved()){
-                System.out.println("Depth: "+node.getDepth());
-                System.out.println("Maximum number of nodes in the queue: "+maxQueueSize);
+                System.out.println("Goal!!");
+                System.out.println("The Depth of the goal node was: "+node.getDepth());
+                System.out.println("Maximum number of nodes in the queue at any one time: "+maxQueueSize);
+                System.out.println("To solve this problem the search alg. expanded a total of "+expandedNodes+" nodes.");
+
                 moves.add(node.get());
                 MisplacedTileNode prev = node.getPrev();
                 while(prev != null){
@@ -112,7 +133,11 @@ public class Driver {
             friends = new ArrayList<>();
             friends = node.get().neighbors();
             for(Board el : friends){
-                nodes.add(new MisplacedTileNode(node,el,node.getDepth()+1));
+                if(node.getPrev() != null && !(Arrays.deepEquals(node.getPrev().get().getBoard(),el.getBoard()))){
+                    nodes.add(new MisplacedTileNode(node,el,node.getDepth()+1));
+                }else if(node.getPrev() == null){
+                    nodes.add(new MisplacedTileNode(node,el,node.getDepth()+1));
+                }
             }
             maxQueueSize = Math.max(maxQueueSize,nodes.size());
         }
@@ -123,13 +148,21 @@ public class Driver {
     public static boolean general_search_manhattan(ManhattanDistNode n){
         PriorityQueue<ManhattanDistNode> nodes = new PriorityQueue<ManhattanDistNode>();
         ArrayList<Board> friends = new ArrayList<>();
+        int expandedNodes = 0;
+
         nodes.add(n);
         while(!nodes.isEmpty())
         {
             ManhattanDistNode node = nodes.remove();
+            expandedNodes++;
+            System.out.println("The best state to expand with a g(n)="+node.getDepth()+" and h(n)="+node.manhattan()+" is:");
+            node.get().print();
+
             if (node.isSolved()){
-                System.out.println("Depth: "+node.getDepth());
-                System.out.println("Maximum number of nodes in the queue: "+maxQueueSize);
+                System.out.println("Goal!!");
+                System.out.println("The Depth of the goal node was: "+node.getDepth());
+                System.out.println("Maximum number of nodes in the queue at any one time: "+maxQueueSize);
+                System.out.println("To solve this problem the search alg. expanded a total of "+expandedNodes+" nodes.");
                 moves.add(node.get());
                 ManhattanDistNode prev = node.getPrev();
                 while(prev != null){
@@ -141,7 +174,11 @@ public class Driver {
             friends = new ArrayList<>();
             friends = node.get().neighbors();
             for(Board el : friends){
-                nodes.add(new ManhattanDistNode(node,el,node.getDepth()+1));
+                if(node.getPrev() != null && !(Arrays.deepEquals(node.getPrev().get().getBoard(),el.getBoard()))){
+                    nodes.add(new ManhattanDistNode(node,el,node.getDepth()+1));
+                }else if(node.getPrev() == null){
+                    nodes.add(new ManhattanDistNode(node,el,node.getDepth()+1));
+                }
             }
             maxQueueSize = Math.max(maxQueueSize,nodes.size());
         }
@@ -176,23 +213,44 @@ public class Driver {
 
     public static int welcomeMessage(){
         Scanner input = new Scanner(System.in);
+        ArrayList<String> userPuzzle;
+
         System.out.println("Welcome to Eduardo Rocha's 8-Puzzle Solver");
         System.out.println("Type “1” to use a default puzzle, or “2” to enter your own puzzle.");
         int option = input.nextInt();
         input.nextLine();
-        ArrayList<String> userPuzzle = new ArrayList<String>(getInput());
+        if(option == 2){
+            userPuzzle = new ArrayList<String>(getInput());
+            if(!userPuzzle.isEmpty()){
+                Board slidingPuzzle = new Board(userPuzzle);
 
-        if(!userPuzzle.isEmpty()){
-            Board slidingPuzzle = new Board(userPuzzle);
+                int algorithm = whichAlgorithm();
+                return createAlgorithm(algorithm, slidingPuzzle);
 
+            }else
+            {
+                return -1;
+            }
+        }else{
+            Board slidingPuzzle = new Board(readInPuzzle());
             int algorithm = whichAlgorithm();
-            return createAlgorithm(algorithm, slidingPuzzle);
+            slidingPuzzle.printGoalState();
+            System.out.println();
+            slidingPuzzle.print();
 
-        }else
-        {
-            return -1;
+            return createAlgorithm(algorithm,slidingPuzzle);
         }
+    }
 
+    public static Integer[][] readInPuzzle(){
+        System.out.println("Creating a default 15 puzzle");
+        Integer [] [] fifteen = new Integer[] [] {
+                { 5, 1, 3, 4},
+                { 13, 2, 7, 8},
+                { 6, 10, 11, 12},
+                { 14, 9, 0, 15}
+        } ;
+        return fifteen;
     }
 
     public static void main(String[] args) {

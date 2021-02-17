@@ -4,11 +4,12 @@ import java.util.List;
 
 public class Board {
 
-    private Integer [][] board = new Integer[3][3];
+    private Integer [][] board;
     private int depth = Integer.MAX_VALUE;
-    private Integer[][] goalBoard = new Integer[3][3];
+    private Integer[][] goalBoard;
 
     public Board(ArrayList<String> puzzle){
+        board = new Integer[3][3];
         for(int i = 0 ; i < puzzle.size(); i++){
             for(int j = 0; j < puzzle.size(); j++){
                 board[i][j] = Character.getNumericValue(puzzle.get(i).charAt(j));
@@ -19,6 +20,8 @@ public class Board {
     }
 
     public Board(Integer [][] board){
+        this.board = new Integer[board.length][board.length];
+
         for(int i = 0 ; i < board.length; i++){
             System.arraycopy(board[i], 0, this.board[i], 0, board.length);
         }
@@ -31,12 +34,14 @@ public class Board {
 
     public void createGoalBoard(){
         int val = 1;
-        for(int i = 0 ; i < goalBoard.length; i++){
-            for(int j = 0; j < goalBoard.length; j++) {
+        goalBoard = new Integer[board.length][board.length];
+
+        for(int i = 0 ; i < board.length; i++){
+            for(int j = 0; j < board.length; j++) {
                 this.goalBoard[i][j] = val++;
             }
         }
-        this.goalBoard[2][2] = 0;
+        this.goalBoard[board.length-1][board.length-1] = 0;
     }
 
     public Integer[][] getGoalBoard(){
@@ -73,15 +78,16 @@ public class Board {
     }
 
     public boolean isValid(int x, int y){
-        return x >= 0 && y >= 0 && x <= 2 && y <= 2;
+        return x >= 0 && y >= 0 && x <= board.length-1 && y <= board.length-1;
     }
 
     public ArrayList<Board> neighbors(){
         ArrayList<Board> friends = new ArrayList<Board>();
-
         char [] moves = {'U','D','L','R'};
+
         for (char move : moves) {
             Board insertMe = new Board(swap(move, this.board));
+            //so we don't insert duplicate boards again
             if (!Arrays.deepEquals(insertMe.getBoard(), this.board))
                 friends.add(insertMe);
         }
