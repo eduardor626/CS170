@@ -73,10 +73,7 @@ public class Driver {
             node.get().print();
 
             if (node.isSolved()){
-                System.out.println("Goal!!");
-                System.out.println("The Depth of the goal node was: "+node.getDepth());
-                System.out.println("Maximum number of nodes in the queue at any one time: "+maxQueueSize);
-                System.out.println("To solve this problem the search alg. expanded a total of "+expandedNodes+" nodes.");
+                printFinalMessage(node.getDepth(),maxQueueSize,expandedNodes);
 
                 moves.add(node.get());
                 UCSNode prev = node.getPrev();
@@ -99,8 +96,8 @@ public class Driver {
 
             }
             maxQueueSize = Math.max(maxQueueSize,nodes.size());
-
         }
+
         return false;
     }
 
@@ -117,10 +114,7 @@ public class Driver {
             node.get().print();
 
             if (node.isSolved()){
-                System.out.println("Goal!!");
-                System.out.println("The Depth of the goal node was: "+node.getDepth());
-                System.out.println("Maximum number of nodes in the queue at any one time: "+maxQueueSize);
-                System.out.println("To solve this problem the search alg. expanded a total of "+expandedNodes+" nodes.");
+                printFinalMessage(node.getDepth(),maxQueueSize,expandedNodes);
 
                 moves.add(node.get());
                 MisplacedTileNode prev = node.getPrev();
@@ -130,6 +124,7 @@ public class Driver {
                 }
                 return true;
             }
+
             friends = new ArrayList<>();
             friends = node.get().neighbors();
             for(Board el : friends){
@@ -144,6 +139,12 @@ public class Driver {
         return false;
     }
 
+    public static void printFinalMessage(int depth, int maxSize, int expandedNodes){
+        System.out.println("Goal!!");
+        System.out.println("The Depth of the goal node was: "+depth);
+        System.out.println("Maximum number of nodes in the queue at any one time: "+maxQueueSize);
+        System.out.println("To solve this problem the search alg. expanded a total of "+expandedNodes+" nodes.");
+    }
 
     public static boolean general_search_manhattan(ManhattanDistNode n){
         PriorityQueue<ManhattanDistNode> nodes = new PriorityQueue<ManhattanDistNode>();
@@ -159,10 +160,8 @@ public class Driver {
             node.get().print();
 
             if (node.isSolved()){
-                System.out.println("Goal!!");
-                System.out.println("The Depth of the goal node was: "+node.getDepth());
-                System.out.println("Maximum number of nodes in the queue at any one time: "+maxQueueSize);
-                System.out.println("To solve this problem the search alg. expanded a total of "+expandedNodes+" nodes.");
+                printFinalMessage(node.getDepth(),maxQueueSize,expandedNodes);
+
                 moves.add(node.get());
                 ManhattanDistNode prev = node.getPrev();
                 while(prev != null){
@@ -171,6 +170,7 @@ public class Driver {
                 }
                 return true;
             }
+
             friends = new ArrayList<>();
             friends = node.get().neighbors();
             for(Board el : friends){
@@ -193,17 +193,17 @@ public class Driver {
                 System.out.println("Uniform Cost Search");
                 UCSNode uniformCostNode = new UCSNode(null,b,0);
                 System.out.println(general_search(uniformCostNode));
-                return 1;
+                return 0 ;
             case 2:
                 System.out.println("A* w/ Misplaced Tile Search");
                 MisplacedTileNode misplaced = new MisplacedTileNode(null,b,0);
                 System.out.println(general_search_misplaced(misplaced));
-                return 2;
+                return 0 ;
             case 3:
                 System.out.println("A* w/ Manhattan Distance Search");
                 ManhattanDistNode manhattan = new ManhattanDistNode(null,b,0);
                 System.out.println(general_search_manhattan(manhattan));
-                return 3;
+                return 0 ;
             default:
                 System.out.println("Error: Invalid Algorithm entered");
                 break;
@@ -226,7 +226,6 @@ public class Driver {
 
                 int algorithm = whichAlgorithm();
                 return createAlgorithm(algorithm, slidingPuzzle);
-
             }else
             {
                 return -1;
@@ -237,9 +236,19 @@ public class Driver {
             slidingPuzzle.printGoalState();
             System.out.println();
             slidingPuzzle.print();
-
             return createAlgorithm(algorithm,slidingPuzzle);
+
         }
+    }
+
+    public static boolean keepGoing(){
+        System.out.println("\nWould you like to try again?");
+        System.out.println("Type \"y\" to continue or type any other key to exit");
+
+        Scanner input = new Scanner(System.in);
+        String choice = input.nextLine();
+        return choice.equals("y") || choice.equals("Y");
+
     }
 
     public static Integer[][] readInPuzzle(){
@@ -254,12 +263,16 @@ public class Driver {
     }
 
     public static void main(String[] args) {
-        welcomeMessage();
 
-        while(!moves.isEmpty()){
-            System.out.println("-- Next Board --");
+        do {
+            welcomeMessage();
+            System.out.println("-- Initial Board --");
             moves.pop().print();
-        }
+            while (!moves.isEmpty()) {
+                System.out.println("-- Next Board --");
+                moves.pop().print();
+            }
+        }while(keepGoing());
 
     }
 }
