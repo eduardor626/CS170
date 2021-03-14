@@ -17,13 +17,14 @@ def feature_search_demo(data):
     # for each row in the data of features
     for i in range(len(data)) :
         print(" ------------------------------- ")
-        print("I am on the "+ str(i) +"th level of the search tree\n") 
+        print("I am on the "+ str(i+1) +"th level of the search tree\n") 
         level = data.loc[i]
+        print(level)
         feature_to_add_at_this_level = []
         best_so_far_accuracy = 0
 
         #for each feature in that level
-        for j in range(len(level)):
+        for j in range(1,len(level)):
             if j not in current_set_of_features:
                 print("Considering adding the "+ str(j)+" feature")
                 feature = level[j]
@@ -34,9 +35,10 @@ def feature_search_demo(data):
                 if accuracy > best_so_far_accuracy :
                     best_so_far_accuracy = accuracy
                     feature_to_add_at_this_level = j
+                    print("feature value = "+str(feature))
 
         current_set_of_features.append(feature_to_add_at_this_level)
-        print("On level "+str(i)+" I added feature "+str(feature_to_add_at_this_level)+" to current set")
+        print("On level "+str(i+1)+" I added feature "+str(feature_to_add_at_this_level)+" to current set")
 
 def main():
     data = pd.read_csv('sample_text.txt',header=None, delimiter = " ")
