@@ -5,6 +5,7 @@ import numpy as np
 import random
 import math
 from copy import deepcopy
+import time
 
 current_set_of_features = []
 best_set_of_features = []
@@ -126,7 +127,11 @@ def user_choice(data):
     choice = int(input())
     if choice == 1:
         print("Forward Selection chosen")
+        # starting time
+        start = time.time()
         feature_search_demo(data,False)
+        end = time.time()
+        print("Time to find best features: "+str(start-end))
     elif choice == 2:
         print("Backward Elimination chosen")
     else:

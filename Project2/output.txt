@@ -1,0 +1,832 @@
+ ------------------------------- 
+Welcome to Eduardo Rocha's Feature Selection Algorithm
+Type in the name of the file to test : 
+Data Frame coming in:
+
+     0         1         2         3    ...       97        98        99        100
+0    1.0  0.628837  0.230010  0.629490  ...  1.546215  1.819107  0.299284 -0.784922
+1    2.0  1.345975 -0.874740  0.148102  ...  0.223160  0.655722  0.592899  0.813467
+2    2.0 -0.767737 -0.703858  0.581011  ... -1.345890  1.315872 -0.951070 -0.163360
+3    2.0  0.609661 -0.723581  0.289465  ... -1.248962  1.165449 -1.409225  1.363712
+4    1.0 -0.405475 -1.144307 -0.373603  ...  0.019993 -1.413509  0.522150  0.522253
+..   ...       ...       ...       ...  ...       ...       ...       ...       ...
+495  2.0 -1.372502  0.450224  0.619190  ... -0.534987 -0.414879  0.088007  1.562596
+496  2.0  0.098685  0.644836 -0.815203  ...  0.083431  1.002505  1.027488  0.534458
+497  2.0  0.456597 -0.443541 -0.035900  ...  0.701311 -0.318673 -1.008480 -0.068286
+498  2.0 -0.937281 -0.734533  0.760506  ...  0.345642  0.549281 -0.371212 -0.359826
+499  2.0  0.853708  0.893372  0.821388  ...  0.872473  0.068442  0.382574  0.519719
+
+[500 rows x 101 columns]
+This dataset has 100 features (not including the class attribute), with 500 instances.
+Type the number of the algorithm you want to run.
+1) Forward Selection 
+2) Backward Elimination
+Forward Selection chosen
+ ------------------------------- 
+I am on the 1th level of the search tree
+
+[1]
+Using feature(s)[1] accuracy is:0.71
+[2]
+Using feature(s)[2] accuracy is:0.692
+[3]
+Using feature(s)[3] accuracy is:0.666
+[4]
+Using feature(s)[4] accuracy is:0.688
+[5]
+Using feature(s)[5] accuracy is:0.698
+[6]
+Using feature(s)[6] accuracy is:0.658
+[7]
+Using feature(s)[7] accuracy is:0.72
+[8]
+Using feature(s)[8] accuracy is:0.694
+[9]
+Using feature(s)[9] accuracy is:0.712
+[10]
+Using feature(s)[10] accuracy is:0.856
+[11]
+Using feature(s)[11] accuracy is:0.656
+[12]
+Using feature(s)[12] accuracy is:0.682
+[13]
+Using feature(s)[13] accuracy is:0.672
+[14]
+Using feature(s)[14] accuracy is:0.702
+[15]
+Using feature(s)[15] accuracy is:0.694
+[16]
+Using feature(s)[16] accuracy is:0.686
+[17]
+Using feature(s)[17] accuracy is:0.7
+[18]
+Using feature(s)[18] accuracy is:0.674
+[19]
+Using feature(s)[19] accuracy is:0.69
+[20]
+Using feature(s)[20] accuracy is:0.662
+[21]
+Using feature(s)[21] accuracy is:0.722
+[22]
+Using feature(s)[22] accuracy is:0.692
+[23]
+Using feature(s)[23] accuracy is:0.69
+[24]
+Using feature(s)[24] accuracy is:0.714
+[25]
+Using feature(s)[25] accuracy is:0.662
+[26]
+Using feature(s)[26] accuracy is:0.678
+[27]
+Using feature(s)[27] accuracy is:0.674
+[28]
+Using feature(s)[28] accuracy is:0.704
+[29]
+Using feature(s)[29] accuracy is:0.708
+[30]
+Using feature(s)[30] accuracy is:0.708
+[31]
+Using feature(s)[31] accuracy is:0.676
+[32]
+Using feature(s)[32] accuracy is:0.72
+[33]
+Using feature(s)[33] accuracy is:0.698
+[34]
+Using feature(s)[34] accuracy is:0.73
+[35]
+Using feature(s)[35] accuracy is:0.666
+[36]
+Using feature(s)[36] accuracy is:0.702
+[37]
+Using feature(s)[37] accuracy is:0.712
+[38]
+Using feature(s)[38] accuracy is:0.714
+[39]
+Using feature(s)[39] accuracy is:0.704
+[40]
+Using feature(s)[40] accuracy is:0.682
+[41]
+Using feature(s)[41] accuracy is:0.68
+[42]
+Using feature(s)[42] accuracy is:0.692
+[43]
+Using feature(s)[43] accuracy is:0.732
+[44]
+Using feature(s)[44] accuracy is:0.704
+[45]
+Using feature(s)[45] accuracy is:0.648
+[46]
+Using feature(s)[46] accuracy is:0.702
+[47]
+Using feature(s)[47] accuracy is:0.696
+[48]
+Using feature(s)[48] accuracy is:0.65
+[49]
+Using feature(s)[49] accuracy is:0.686
+[50]
+Using feature(s)[50] accuracy is:0.692
+[51]
+Using feature(s)[51] accuracy is:0.664
+[52]
+Using feature(s)[52] accuracy is:0.7
+[53]
+Using feature(s)[53] accuracy is:0.658
+[54]
+Using feature(s)[54] accuracy is:0.688
+[55]
+Using feature(s)[55] accuracy is:0.704
+[56]
+Using feature(s)[56] accuracy is:0.704
+[57]
+Using feature(s)[57] accuracy is:0.682
+[58]
+Using feature(s)[58] accuracy is:0.72
+[59]
+Using feature(s)[59] accuracy is:0.7
+[60]
+Using feature(s)[60] accuracy is:0.67
+[61]
+Using feature(s)[61] accuracy is:0.684
+[62]
+Using feature(s)[62] accuracy is:0.688
+[63]
+Using feature(s)[63] accuracy is:0.676
+[64]
+Using feature(s)[64] accuracy is:0.728
+[65]
+Using feature(s)[65] accuracy is:0.67
+[66]
+Using feature(s)[66] accuracy is:0.684
+[67]
+Using feature(s)[67] accuracy is:0.696
+[68]
+Using feature(s)[68] accuracy is:0.706
+[69]
+Using feature(s)[69] accuracy is:0.658
+[70]
+Using feature(s)[70] accuracy is:0.68
+[71]
+Using feature(s)[71] accuracy is:0.688
+[72]
+Using feature(s)[72] accuracy is:0.696
+[73]
+Using feature(s)[73] accuracy is:0.72
+[74]
+Using feature(s)[74] accuracy is:0.672
+[75]
+Using feature(s)[75] accuracy is:0.68
+[76]
+Using feature(s)[76] accuracy is:0.694
+[77]
+Using feature(s)[77] accuracy is:0.72
+[78]
+Using feature(s)[78] accuracy is:0.714
+[79]
+Using feature(s)[79] accuracy is:0.676
+[80]
+Using feature(s)[80] accuracy is:0.72
+[81]
+Using feature(s)[81] accuracy is:0.728
+[82]
+Using feature(s)[82] accuracy is:0.708
+[83]
+Using feature(s)[83] accuracy is:0.678
+[84]
+Using feature(s)[84] accuracy is:0.66
+[85]
+Using feature(s)[85] accuracy is:0.692
+[86]
+Using feature(s)[86] accuracy is:0.668
+[87]
+Using feature(s)[87] accuracy is:0.686
+[88]
+Using feature(s)[88] accuracy is:0.692
+[89]
+Using feature(s)[89] accuracy is:0.734
+[90]
+Using feature(s)[90] accuracy is:0.698
+[91]
+Using feature(s)[91] accuracy is:0.684
+[92]
+Using feature(s)[92] accuracy is:0.704
+[93]
+Using feature(s)[93] accuracy is:0.68
+[94]
+Using feature(s)[94] accuracy is:0.688
+[95]
+Using feature(s)[95] accuracy is:0.716
+[96]
+Using feature(s)[96] accuracy is:0.69
+[97]
+Using feature(s)[97] accuracy is:0.682
+[98]
+Using feature(s)[98] accuracy is:0.71
+[99]
+Using feature(s)[99] accuracy is:0.734
+[100]
+Using feature(s)[100] accuracy is:0.686
+On level 1 I added feature 10 to current set
+ ------------------------------- 
+I am on the 2th level of the search tree
+
+[10, 1]
+Using feature(s)[10, 1] accuracy is:0.836
+[10, 2]
+Using feature(s)[10, 2] accuracy is:0.8
+[10, 3]
+Using feature(s)[10, 3] accuracy is:0.786
+[10, 4]
+Using feature(s)[10, 4] accuracy is:0.816
+[10, 5]
+Using feature(s)[10, 5] accuracy is:0.828
+[10, 6]
+Using feature(s)[10, 6] accuracy is:0.782
+[10, 7]
+Using feature(s)[10, 7] accuracy is:0.848
+[10, 8]
+Using feature(s)[10, 8] accuracy is:0.794
+[10, 9]
+Using feature(s)[10, 9] accuracy is:0.814
+[10, 11]
+Using feature(s)[10, 11] accuracy is:0.804
+[10, 12]
+Using feature(s)[10, 12] accuracy is:0.816
+[10, 13]
+Using feature(s)[10, 13] accuracy is:0.818
+[10, 14]
+Using feature(s)[10, 14] accuracy is:0.84
+[10, 15]
+Using feature(s)[10, 15] accuracy is:0.774
+[10, 16]
+Using feature(s)[10, 16] accuracy is:0.822
+[10, 17]
+Using feature(s)[10, 17] accuracy is:0.78
+[10, 18]
+Using feature(s)[10, 18] accuracy is:0.812
+[10, 19]
+Using feature(s)[10, 19] accuracy is:0.778
+[10, 20]
+Using feature(s)[10, 20] accuracy is:0.782
+[10, 21]
+Using feature(s)[10, 21] accuracy is:0.812
+[10, 22]
+Using feature(s)[10, 22] accuracy is:0.814
+[10, 23]
+Using feature(s)[10, 23] accuracy is:0.816
+[10, 24]
+Using feature(s)[10, 24] accuracy is:0.852
+[10, 25]
+Using feature(s)[10, 25] accuracy is:0.8
+[10, 26]
+Using feature(s)[10, 26] accuracy is:0.818
+[10, 27]
+Using feature(s)[10, 27] accuracy is:0.79
+[10, 28]
+Using feature(s)[10, 28] accuracy is:0.868
+[10, 29]
+Using feature(s)[10, 29] accuracy is:0.798
+[10, 30]
+Using feature(s)[10, 30] accuracy is:0.784
+[10, 31]
+Using feature(s)[10, 31] accuracy is:0.816
+[10, 32]
+Using feature(s)[10, 32] accuracy is:0.808
+[10, 33]
+Using feature(s)[10, 33] accuracy is:0.822
+[10, 34]
+Using feature(s)[10, 34] accuracy is:0.816
+[10, 35]
+Using feature(s)[10, 35] accuracy is:0.81
+[10, 36]
+Using feature(s)[10, 36] accuracy is:0.798
+[10, 37]
+Using feature(s)[10, 37] accuracy is:0.82
+[10, 38]
+Using feature(s)[10, 38] accuracy is:0.826
+[10, 39]
+Using feature(s)[10, 39] accuracy is:0.822
+[10, 40]
+Using feature(s)[10, 40] accuracy is:0.78
+[10, 41]
+Using feature(s)[10, 41] accuracy is:0.8
+[10, 42]
+Using feature(s)[10, 42] accuracy is:0.826
+[10, 43]
+Using feature(s)[10, 43] accuracy is:0.822
+[10, 44]
+Using feature(s)[10, 44] accuracy is:0.798
+[10, 45]
+Using feature(s)[10, 45] accuracy is:0.804
+[10, 46]
+Using feature(s)[10, 46] accuracy is:0.792
+[10, 47]
+Using feature(s)[10, 47] accuracy is:0.814
+[10, 48]
+Using feature(s)[10, 48] accuracy is:0.79
+[10, 49]
+Using feature(s)[10, 49] accuracy is:0.842
+[10, 50]
+Using feature(s)[10, 50] accuracy is:0.808
+[10, 51]
+Using feature(s)[10, 51] accuracy is:0.816
+[10, 52]
+Using feature(s)[10, 52] accuracy is:0.818
+[10, 53]
+Using feature(s)[10, 53] accuracy is:0.824
+[10, 54]
+Using feature(s)[10, 54] accuracy is:0.814
+[10, 55]
+Using feature(s)[10, 55] accuracy is:0.834
+[10, 56]
+Using feature(s)[10, 56] accuracy is:0.8
+[10, 57]
+Using feature(s)[10, 57] accuracy is:0.806
+[10, 58]
+Using feature(s)[10, 58] accuracy is:0.824
+[10, 59]
+Using feature(s)[10, 59] accuracy is:0.824
+[10, 60]
+Using feature(s)[10, 60] accuracy is:0.812
+[10, 61]
+Using feature(s)[10, 61] accuracy is:0.816
+[10, 62]
+Using feature(s)[10, 62] accuracy is:0.81
+[10, 63]
+Using feature(s)[10, 63] accuracy is:0.824
+[10, 64]
+Using feature(s)[10, 64] accuracy is:0.824
+[10, 65]
+Using feature(s)[10, 65] accuracy is:0.796
+[10, 66]
+Using feature(s)[10, 66] accuracy is:0.824
+[10, 67]
+Using feature(s)[10, 67] accuracy is:0.822
+[10, 68]
+Using feature(s)[10, 68] accuracy is:0.818
+[10, 69]
+Using feature(s)[10, 69] accuracy is:0.772
+[10, 70]
+Using feature(s)[10, 70] accuracy is:0.832
+[10, 71]
+Using feature(s)[10, 71] accuracy is:0.802
+[10, 72]
+Using feature(s)[10, 72] accuracy is:0.832
+[10, 73]
+Using feature(s)[10, 73] accuracy is:0.808
+[10, 74]
+Using feature(s)[10, 74] accuracy is:0.81
+[10, 75]
+Using feature(s)[10, 75] accuracy is:0.834
+[10, 76]
+Using feature(s)[10, 76] accuracy is:0.794
+[10, 77]
+Using feature(s)[10, 77] accuracy is:0.822
+[10, 78]
+Using feature(s)[10, 78] accuracy is:0.804
+[10, 79]
+Using feature(s)[10, 79] accuracy is:0.818
+[10, 80]
+Using feature(s)[10, 80] accuracy is:0.816
+[10, 81]
+Using feature(s)[10, 81] accuracy is:0.902
+[10, 82]
+Using feature(s)[10, 82] accuracy is:0.812
+[10, 83]
+Using feature(s)[10, 83] accuracy is:0.808
+[10, 84]
+Using feature(s)[10, 84] accuracy is:0.84
+[10, 85]
+Using feature(s)[10, 85] accuracy is:0.834
+[10, 86]
+Using feature(s)[10, 86] accuracy is:0.814
+[10, 87]
+Using feature(s)[10, 87] accuracy is:0.814
+[10, 88]
+Using feature(s)[10, 88] accuracy is:0.794
+[10, 89]
+Using feature(s)[10, 89] accuracy is:0.802
+[10, 90]
+Using feature(s)[10, 90] accuracy is:0.812
+[10, 91]
+Using feature(s)[10, 91] accuracy is:0.832
+[10, 92]
+Using feature(s)[10, 92] accuracy is:0.826
+[10, 93]
+Using feature(s)[10, 93] accuracy is:0.798
+[10, 94]
+Using feature(s)[10, 94] accuracy is:0.826
+[10, 95]
+Using feature(s)[10, 95] accuracy is:0.792
+[10, 96]
+Using feature(s)[10, 96] accuracy is:0.862
+[10, 97]
+Using feature(s)[10, 97] accuracy is:0.8
+[10, 98]
+Using feature(s)[10, 98] accuracy is:0.798
+[10, 99]
+Using feature(s)[10, 99] accuracy is:0.844
+[10, 100]
+Using feature(s)[10, 100] accuracy is:0.856
+On level 2 I added feature 81 to current set
+ ------------------------------- 
+I am on the 3th level of the search tree
+
+[10, 81, 1]
+Using feature(s)[10, 81, 1] accuracy is:0.866
+[10, 81, 2]
+Using feature(s)[10, 81, 2] accuracy is:0.858
+[10, 81, 3]
+Using feature(s)[10, 81, 3] accuracy is:0.88
+[10, 81, 4]
+Using feature(s)[10, 81, 4] accuracy is:0.89
+[10, 81, 5]
+Using feature(s)[10, 81, 5] accuracy is:0.874
+[10, 81, 6]
+Using feature(s)[10, 81, 6] accuracy is:0.898
+[10, 81, 7]
+Using feature(s)[10, 81, 7] accuracy is:0.894
+[10, 81, 8]
+Using feature(s)[10, 81, 8] accuracy is:0.872
+[10, 81, 9]
+Using feature(s)[10, 81, 9] accuracy is:0.868
+[10, 81, 11]
+Using feature(s)[10, 81, 11] accuracy is:0.882
+[10, 81, 12]
+Using feature(s)[10, 81, 12] accuracy is:0.886
+[10, 81, 13]
+Using feature(s)[10, 81, 13] accuracy is:0.858
+[10, 81, 14]
+Using feature(s)[10, 81, 14] accuracy is:0.878
+[10, 81, 15]
+Using feature(s)[10, 81, 15] accuracy is:0.858
+[10, 81, 16]
+Using feature(s)[10, 81, 16] accuracy is:0.876
+[10, 81, 17]
+Using feature(s)[10, 81, 17] accuracy is:0.868
+[10, 81, 18]
+Using feature(s)[10, 81, 18] accuracy is:0.868
+[10, 81, 19]
+Using feature(s)[10, 81, 19] accuracy is:0.864
+[10, 81, 20]
+Using feature(s)[10, 81, 20] accuracy is:0.876
+[10, 81, 21]
+Using feature(s)[10, 81, 21] accuracy is:0.884
+[10, 81, 22]
+Using feature(s)[10, 81, 22] accuracy is:0.874
+[10, 81, 23]
+Using feature(s)[10, 81, 23] accuracy is:0.876
+[10, 81, 24]
+Using feature(s)[10, 81, 24] accuracy is:0.878
+[10, 81, 25]
+Using feature(s)[10, 81, 25] accuracy is:0.854
+[10, 81, 26]
+Using feature(s)[10, 81, 26] accuracy is:0.878
+[10, 81, 27]
+Using feature(s)[10, 81, 27] accuracy is:0.87
+[10, 81, 28]
+Using feature(s)[10, 81, 28] accuracy is:0.884
+[10, 81, 29]
+Using feature(s)[10, 81, 29] accuracy is:0.88
+[10, 81, 30]
+Using feature(s)[10, 81, 30] accuracy is:0.858
+[10, 81, 31]
+Using feature(s)[10, 81, 31] accuracy is:0.886
+[10, 81, 32]
+Using feature(s)[10, 81, 32] accuracy is:0.874
+[10, 81, 33]
+Using feature(s)[10, 81, 33] accuracy is:0.878
+[10, 81, 34]
+Using feature(s)[10, 81, 34] accuracy is:0.878
+[10, 81, 35]
+Using feature(s)[10, 81, 35] accuracy is:0.852
+[10, 81, 36]
+Using feature(s)[10, 81, 36] accuracy is:0.862
+[10, 81, 37]
+Using feature(s)[10, 81, 37] accuracy is:0.876
+[10, 81, 38]
+Using feature(s)[10, 81, 38] accuracy is:0.878
+[10, 81, 39]
+Using feature(s)[10, 81, 39] accuracy is:0.87
+[10, 81, 40]
+Using feature(s)[10, 81, 40] accuracy is:0.868
+[10, 81, 41]
+Using feature(s)[10, 81, 41] accuracy is:0.882
+[10, 81, 42]
+Using feature(s)[10, 81, 42] accuracy is:0.872
+[10, 81, 43]
+Using feature(s)[10, 81, 43] accuracy is:0.86
+[10, 81, 44]
+Using feature(s)[10, 81, 44] accuracy is:0.864
+[10, 81, 45]
+Using feature(s)[10, 81, 45] accuracy is:0.88
+[10, 81, 46]
+Using feature(s)[10, 81, 46] accuracy is:0.86
+[10, 81, 47]
+Using feature(s)[10, 81, 47] accuracy is:0.86
+[10, 81, 48]
+Using feature(s)[10, 81, 48] accuracy is:0.862
+[10, 81, 49]
+Using feature(s)[10, 81, 49] accuracy is:0.88
+[10, 81, 50]
+Using feature(s)[10, 81, 50] accuracy is:0.872
+[10, 81, 51]
+Using feature(s)[10, 81, 51] accuracy is:0.882
+[10, 81, 52]
+Using feature(s)[10, 81, 52] accuracy is:0.86
+[10, 81, 53]
+Using feature(s)[10, 81, 53] accuracy is:0.868
+[10, 81, 54]
+Using feature(s)[10, 81, 54] accuracy is:0.872
+[10, 81, 55]
+Using feature(s)[10, 81, 55] accuracy is:0.892
+[10, 81, 56]
+Using feature(s)[10, 81, 56] accuracy is:0.866
+[10, 81, 57]
+Using feature(s)[10, 81, 57] accuracy is:0.874
+[10, 81, 58]
+Using feature(s)[10, 81, 58] accuracy is:0.89
+[10, 81, 59]
+Using feature(s)[10, 81, 59] accuracy is:0.884
+[10, 81, 60]
+Using feature(s)[10, 81, 60] accuracy is:0.882
+[10, 81, 61]
+Using feature(s)[10, 81, 61] accuracy is:0.9
+[10, 81, 62]
+Using feature(s)[10, 81, 62] accuracy is:0.92
+[10, 81, 63]
+Using feature(s)[10, 81, 63] accuracy is:0.86
+[10, 81, 64]
+Using feature(s)[10, 81, 64] accuracy is:0.9
+[10, 81, 65]
+Using feature(s)[10, 81, 65] accuracy is:0.896
+[10, 81, 66]
+Using feature(s)[10, 81, 66] accuracy is:0.888
+[10, 81, 67]
+Using feature(s)[10, 81, 67] accuracy is:0.88
+[10, 81, 68]
+Using feature(s)[10, 81, 68] accuracy is:0.87
+[10, 81, 69]
+Using feature(s)[10, 81, 69] accuracy is:0.872
+[10, 81, 70]
+Using feature(s)[10, 81, 70] accuracy is:0.886
+[10, 81, 71]
+Using feature(s)[10, 81, 71] accuracy is:0.9
+[10, 81, 72]
+Using feature(s)[10, 81, 72] accuracy is:0.878
+[10, 81, 73]
+Using feature(s)[10, 81, 73] accuracy is:0.866
+[10, 81, 74]
+Using feature(s)[10, 81, 74] accuracy is:0.874
+[10, 81, 75]
+Using feature(s)[10, 81, 75] accuracy is:0.872
+[10, 81, 76]
+Using feature(s)[10, 81, 76] accuracy is:0.846
+[10, 81, 77]
+Using feature(s)[10, 81, 77] accuracy is:0.898
+[10, 81, 78]
+Using feature(s)[10, 81, 78] accuracy is:0.884
+[10, 81, 79]
+Using feature(s)[10, 81, 79] accuracy is:0.878
+[10, 81, 80]
+Using feature(s)[10, 81, 80] accuracy is:0.894
+[10, 81, 82]
+Using feature(s)[10, 81, 82] accuracy is:0.884
+[10, 81, 83]
+Using feature(s)[10, 81, 83] accuracy is:0.846
+[10, 81, 84]
+Using feature(s)[10, 81, 84] accuracy is:0.876
+[10, 81, 85]
+Using feature(s)[10, 81, 85] accuracy is:0.866
+[10, 81, 86]
+Using feature(s)[10, 81, 86] accuracy is:0.87
+[10, 81, 87]
+Using feature(s)[10, 81, 87] accuracy is:0.892
+[10, 81, 88]
+Using feature(s)[10, 81, 88] accuracy is:0.864
+[10, 81, 89]
+Using feature(s)[10, 81, 89] accuracy is:0.864
+[10, 81, 90]
+Using feature(s)[10, 81, 90] accuracy is:0.886
+[10, 81, 91]
+Using feature(s)[10, 81, 91] accuracy is:0.888
+[10, 81, 92]
+Using feature(s)[10, 81, 92] accuracy is:0.894
+[10, 81, 93]
+Using feature(s)[10, 81, 93] accuracy is:0.89
+[10, 81, 94]
+Using feature(s)[10, 81, 94] accuracy is:0.882
+[10, 81, 95]
+Using feature(s)[10, 81, 95] accuracy is:0.858
+[10, 81, 96]
+Using feature(s)[10, 81, 96] accuracy is:0.89
+[10, 81, 97]
+Using feature(s)[10, 81, 97] accuracy is:0.862
+[10, 81, 98]
+Using feature(s)[10, 81, 98] accuracy is:0.884
+[10, 81, 99]
+Using feature(s)[10, 81, 99] accuracy is:0.902
+[10, 81, 100]
+Using feature(s)[10, 81, 100] accuracy is:0.902
+On level 3 I added feature 62 to current set
+ ------------------------------- 
+I am on the 4th level of the search tree
+
+[10, 81, 62, 1]
+Using feature(s)[10, 81, 62, 1] accuracy is:0.88
+[10, 81, 62, 2]
+Using feature(s)[10, 81, 62, 2] accuracy is:0.84
+[10, 81, 62, 3]
+Using feature(s)[10, 81, 62, 3] accuracy is:0.836
+[10, 81, 62, 4]
+Using feature(s)[10, 81, 62, 4] accuracy is:0.858
+[10, 81, 62, 5]
+Using feature(s)[10, 81, 62, 5] accuracy is:0.854
+[10, 81, 62, 6]
+Using feature(s)[10, 81, 62, 6] accuracy is:0.836
+[10, 81, 62, 7]
+Using feature(s)[10, 81, 62, 7] accuracy is:0.892
+[10, 81, 62, 8]
+Using feature(s)[10, 81, 62, 8] accuracy is:0.854
+[10, 81, 62, 9]
+Using feature(s)[10, 81, 62, 9] accuracy is:0.86
+[10, 81, 62, 11]
+Using feature(s)[10, 81, 62, 11] accuracy is:0.856
+[10, 81, 62, 12]
+Using feature(s)[10, 81, 62, 12] accuracy is:0.852
+[10, 81, 62, 13]
+Using feature(s)[10, 81, 62, 13] accuracy is:0.86
+[10, 81, 62, 14]
+Using feature(s)[10, 81, 62, 14] accuracy is:0.856
+[10, 81, 62, 15]
+Using feature(s)[10, 81, 62, 15] accuracy is:0.88
+[10, 81, 62, 16]
+Using feature(s)[10, 81, 62, 16] accuracy is:0.872
+[10, 81, 62, 17]
+Using feature(s)[10, 81, 62, 17] accuracy is:0.846
+[10, 81, 62, 18]
+Using feature(s)[10, 81, 62, 18] accuracy is:0.826
+[10, 81, 62, 19]
+Using feature(s)[10, 81, 62, 19] accuracy is:0.846
+[10, 81, 62, 20]
+Using feature(s)[10, 81, 62, 20] accuracy is:0.866
+[10, 81, 62, 21]
+Using feature(s)[10, 81, 62, 21] accuracy is:0.858
+[10, 81, 62, 22]
+Using feature(s)[10, 81, 62, 22] accuracy is:0.864
+[10, 81, 62, 23]
+Using feature(s)[10, 81, 62, 23] accuracy is:0.862
+[10, 81, 62, 24]
+Using feature(s)[10, 81, 62, 24] accuracy is:0.878
+[10, 81, 62, 25]
+Using feature(s)[10, 81, 62, 25] accuracy is:0.838
+[10, 81, 62, 26]
+Using feature(s)[10, 81, 62, 26] accuracy is:0.858
+[10, 81, 62, 27]
+Using feature(s)[10, 81, 62, 27] accuracy is:0.836
+[10, 81, 62, 28]
+Using feature(s)[10, 81, 62, 28] accuracy is:0.844
+[10, 81, 62, 29]
+Using feature(s)[10, 81, 62, 29] accuracy is:0.854
+[10, 81, 62, 30]
+Using feature(s)[10, 81, 62, 30] accuracy is:0.85
+[10, 81, 62, 31]
+Using feature(s)[10, 81, 62, 31] accuracy is:0.87
+[10, 81, 62, 32]
+Using feature(s)[10, 81, 62, 32] accuracy is:0.884
+[10, 81, 62, 33]
+Using feature(s)[10, 81, 62, 33] accuracy is:0.862
+[10, 81, 62, 34]
+Using feature(s)[10, 81, 62, 34] accuracy is:0.82
+[10, 81, 62, 35]
+Using feature(s)[10, 81, 62, 35] accuracy is:0.856
+[10, 81, 62, 36]
+Using feature(s)[10, 81, 62, 36] accuracy is:0.86
+[10, 81, 62, 37]
+Using feature(s)[10, 81, 62, 37] accuracy is:0.842
+[10, 81, 62, 38]
+Using feature(s)[10, 81, 62, 38] accuracy is:0.854
+[10, 81, 62, 39]
+Using feature(s)[10, 81, 62, 39] accuracy is:0.862
+[10, 81, 62, 40]
+Using feature(s)[10, 81, 62, 40] accuracy is:0.87
+[10, 81, 62, 41]
+Using feature(s)[10, 81, 62, 41] accuracy is:0.856
+[10, 81, 62, 42]
+Using feature(s)[10, 81, 62, 42] accuracy is:0.886
+[10, 81, 62, 43]
+Using feature(s)[10, 81, 62, 43] accuracy is:0.86
+[10, 81, 62, 44]
+Using feature(s)[10, 81, 62, 44] accuracy is:0.854
+[10, 81, 62, 45]
+Using feature(s)[10, 81, 62, 45] accuracy is:0.85
+[10, 81, 62, 46]
+Using feature(s)[10, 81, 62, 46] accuracy is:0.876
+[10, 81, 62, 47]
+Using feature(s)[10, 81, 62, 47] accuracy is:0.85
+[10, 81, 62, 48]
+Using feature(s)[10, 81, 62, 48] accuracy is:0.816
+[10, 81, 62, 49]
+Using feature(s)[10, 81, 62, 49] accuracy is:0.87
+[10, 81, 62, 50]
+Using feature(s)[10, 81, 62, 50] accuracy is:0.85
+[10, 81, 62, 51]
+Using feature(s)[10, 81, 62, 51] accuracy is:0.86
+[10, 81, 62, 52]
+Using feature(s)[10, 81, 62, 52] accuracy is:0.854
+[10, 81, 62, 53]
+Using feature(s)[10, 81, 62, 53] accuracy is:0.854
+[10, 81, 62, 54]
+Using feature(s)[10, 81, 62, 54] accuracy is:0.848
+[10, 81, 62, 55]
+Using feature(s)[10, 81, 62, 55] accuracy is:0.84
+[10, 81, 62, 56]
+Using feature(s)[10, 81, 62, 56] accuracy is:0.834
+[10, 81, 62, 57]
+Using feature(s)[10, 81, 62, 57] accuracy is:0.876
+[10, 81, 62, 58]
+Using feature(s)[10, 81, 62, 58] accuracy is:0.868
+[10, 81, 62, 59]
+Using feature(s)[10, 81, 62, 59] accuracy is:0.86
+[10, 81, 62, 60]
+Using feature(s)[10, 81, 62, 60] accuracy is:0.856
+[10, 81, 62, 61]
+Using feature(s)[10, 81, 62, 61] accuracy is:0.852
+[10, 81, 62, 63]
+Using feature(s)[10, 81, 62, 63] accuracy is:0.848
+[10, 81, 62, 64]
+Using feature(s)[10, 81, 62, 64] accuracy is:0.874
+[10, 81, 62, 65]
+Using feature(s)[10, 81, 62, 65] accuracy is:0.856
+[10, 81, 62, 66]
+Using feature(s)[10, 81, 62, 66] accuracy is:0.858
+[10, 81, 62, 67]
+Using feature(s)[10, 81, 62, 67] accuracy is:0.856
+[10, 81, 62, 68]
+Using feature(s)[10, 81, 62, 68] accuracy is:0.868
+[10, 81, 62, 69]
+Using feature(s)[10, 81, 62, 69] accuracy is:0.842
+[10, 81, 62, 70]
+Using feature(s)[10, 81, 62, 70] accuracy is:0.858
+[10, 81, 62, 71]
+Using feature(s)[10, 81, 62, 71] accuracy is:0.89
+[10, 81, 62, 72]
+Using feature(s)[10, 81, 62, 72] accuracy is:0.848
+[10, 81, 62, 73]
+Using feature(s)[10, 81, 62, 73] accuracy is:0.84
+[10, 81, 62, 74]
+Using feature(s)[10, 81, 62, 74] accuracy is:0.85
+[10, 81, 62, 75]
+Using feature(s)[10, 81, 62, 75] accuracy is:0.876
+[10, 81, 62, 76]
+Using feature(s)[10, 81, 62, 76] accuracy is:0.862
+[10, 81, 62, 77]
+Using feature(s)[10, 81, 62, 77] accuracy is:0.866
+[10, 81, 62, 78]
+Using feature(s)[10, 81, 62, 78] accuracy is:0.864
+[10, 81, 62, 79]
+Using feature(s)[10, 81, 62, 79] accuracy is:0.86
+[10, 81, 62, 80]
+Using feature(s)[10, 81, 62, 80] accuracy is:0.886
+[10, 81, 62, 82]
+Using feature(s)[10, 81, 62, 82] accuracy is:0.862
+[10, 81, 62, 83]
+Using feature(s)[10, 81, 62, 83] accuracy is:0.85
+[10, 81, 62, 84]
+Using feature(s)[10, 81, 62, 84] accuracy is:0.864
+[10, 81, 62, 85]
+Using feature(s)[10, 81, 62, 85] accuracy is:0.882
+[10, 81, 62, 86]
+Using feature(s)[10, 81, 62, 86] accuracy is:0.866
+[10, 81, 62, 87]
+Using feature(s)[10, 81, 62, 87] accuracy is:0.848
+[10, 81, 62, 88]
+Using feature(s)[10, 81, 62, 88] accuracy is:0.888
+[10, 81, 62, 89]
+Using feature(s)[10, 81, 62, 89] accuracy is:0.866
+[10, 81, 62, 90]
+Using feature(s)[10, 81, 62, 90] accuracy is:0.84
+[10, 81, 62, 91]
+Using feature(s)[10, 81, 62, 91] accuracy is:0.876
+[10, 81, 62, 92]
+Using feature(s)[10, 81, 62, 92] accuracy is:0.844
+[10, 81, 62, 93]
+Using feature(s)[10, 81, 62, 93] accuracy is:0.852
+[10, 81, 62, 94]
+Using feature(s)[10, 81, 62, 94] accuracy is:0.866
+[10, 81, 62, 95]
+Using feature(s)[10, 81, 62, 95] accuracy is:0.862
+[10, 81, 62, 96]
+Using feature(s)[10, 81, 62, 96] accuracy is:0.89
+[10, 81, 62, 97]
+Using feature(s)[10, 81, 62, 97] accuracy is:0.854
+[10, 81, 62, 98]
+Using feature(s)[10, 81, 62, 98] accuracy is:0.848
+[10, 81, 62, 99]
+Using feature(s)[10, 81, 62, 99] accuracy is:0.872
+[10, 81, 62, 100]
+Using feature(s)[10, 81, 62, 100] accuracy is:0.92
+
+Stopping the search because we didnt find better accuracy here.
+Finished searching..
+Best Accuracy = 0.92 with the features [10, 81, 62]
+Time to find best features: -41620.37546682358
