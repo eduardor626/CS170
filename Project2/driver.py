@@ -12,16 +12,21 @@ best_set_of_features = []
 
 # separating the search part from the cross validation part
 # validation function telling us how good a state will be
-# 
-def leave_one_out_class_validation(data,current_set_of_features,feature_to_add):
+# if backwards_search set to True, we do it differently
+def leave_one_out_class_validation(data,current_set_of_features,feature_to_add,backwards_search=False):
     number_correctly_classified = 0
-
     copy_data = deepcopy(data)
     copy_check = deepcopy(current_set_of_features)
-    copy_check.append(feature_to_add)
-    print(copy_check)
+    
+    if backwards_search is not False:
+        copy_check.remove(feature_to_add)
+    else:
+        copy_check.append(feature_to_add)
+    #print(copy_check)
+
     num_of_features = len(data.loc[0])-1
 
+    # don't check features we are not interested in
     for i in range(len(copy_data)):
         for k in range(1,num_of_features):
             if k not in copy_check:
@@ -32,16 +37,12 @@ def leave_one_out_class_validation(data,current_set_of_features,feature_to_add):
         # grab the data we need from each row object
         object_to_classify = copy_data.loc[i]
         label_object_to_classify = object_to_classify.loc[0]
-        #print("Looping over i, at the "+str(i+1)+" location.")
-        #print("The "+str(i+1)+"th object is in class "+str(label_object_to_classify))
         
         nearest_neighbor_distance = math.inf
         nearest_neighbor_location = math.inf
 
         for k in range(len(copy_data)):
-            #print("k ="+str(k)+" i = "+str(i))
             if k != i:
-                #print("Ask if "+str(i+1)+" is nearest neighbor with "+str(k+1))
                 x = object_to_classify.iloc[1:] #getting current row or object 
                 y = copy_data.iloc[k,1:] #getting the others from the data set 
                 distance = np.sqrt(np.sum([(a-b)*(a-b) for a, b in zip(x, y)]))
@@ -55,52 +56,89 @@ def leave_one_out_class_validation(data,current_set_of_features,feature_to_add):
             number_correctly_classified = number_correctly_classified+1
 
     accuracy = number_correctly_classified/len(copy_data)
-    #print("Accuracy = "+str(accuracy))
     return accuracy
 
+def backward_elimination_demo(data,flag=False):
+
+    best_so_far_accuracy = 0
+    num_of_features = len(data.loc[0])-1
+    backwards_search = True
+
+    # setup all the features initially
+    for feature in range(num_of_features):
+        current_set_of_features.append(feature+1)
+
+    # for each row in the data of features
+    for i in range(len(data)) :
+        level = data.loc[i]
+        feature_to_delete_at_this_level = None
+        current_accuracy = 0
+
+    # for each feature in that level
+        for j in range(1,len(level)):
+             if j in current_set_of_features:
+                accuracy = leave_one_out_class_validation(data,current_set_of_features,j,backwards_search)
+                copy_set = deepcopy(current_set_of_features)
+                copy_set.remove(j)
+                print('Using feature(s)'+ str(copy_set)+" accuracy is:"+str(accuracy))
+
+                if flag == True and accuracy > current_accuracy:
+                    feature_to_delete_at_this_level = j
+                    current_accuracy = accuracy  
+                #check every feature at that level for the best feature
+                if accuracy >= best_so_far_accuracy :
+                    best_so_far_accuracy = accuracy
+                    #because we have better accuracy without this feature
+                    feature_to_delete_at_this_level = j
+
+        if feature_to_delete_at_this_level is not None:
+            current_set_of_features.remove(feature_to_delete_at_this_level)
+            print("On level "+str(len(data.loc[0])-1)+" I deleted "+str(feature_to_delete_at_this_level)+" to current set")
+        else:
+            print('\nStopping the search because we didnt find better accuracy here.')
+            break
+    
+    print("Finished searching..")
+    print("Best Accuracy = "+ str(best_so_far_accuracy)+ " with the features "+str(current_set_of_features))
+
+
+
 # this will search our adjacency matrix for the most valuable features
+# params: data(data coming in), flag(to go through all the features), backwards(to do backward elimination instead)
 def feature_search_demo(data,flag=False):
 
     best_so_far_accuracy = 0
     num_of_features = len(data.loc[0])-1
-    
-    #print("Num of features = "+str(num_of_features))
 
     # for each row in the data of features
     for i in range(len(data)) :
         print(" ------------------------------- ")
         print("I am on the "+ str(i+1) +"th level of the search tree\n") 
         level = data.loc[i]
-        #print(level)
         feature_to_add_at_this_level = None
         current_accuracy = 0
-
 
         #for each feature in that level
         for j in range(1,len(level)):
             if j not in current_set_of_features:
-                #print("-- Considering adding the "+ str(j)+" feature")
-                feature = level[j]
-                #print(feature)
+                #feature = level[j] (checking specific feature)
                 accuracy = leave_one_out_class_validation(data,current_set_of_features,j)
-                #setting up the print set
-                print_set = deepcopy(current_set_of_features)
-                print_set.append(j)
-                print('Using feature(s)'+ str(print_set)+" accuracy is:"+str(accuracy))
-
+                copy_set = deepcopy(current_set_of_features)
+                copy_set.append(j)
+                print('Using feature(s)'+ str(copy_set)+" accuracy is:"+str(accuracy))
 
                 if flag == True and accuracy > current_accuracy:
                      feature_to_add_at_this_level = j
                      current_accuracy = accuracy
+
                     #check every feature at that level for the best feature
-                if accuracy > best_so_far_accuracy :
+                if accuracy >= best_so_far_accuracy :
                     best_so_far_accuracy = accuracy
                     feature_to_add_at_this_level = j
-                    best_set_of_features.append(j)
+                    
 
         if feature_to_add_at_this_level is not None:
             current_set_of_features.append(feature_to_add_at_this_level)
-            #best_set_of_features.append(feature_to_add_at_this_level)
             print("On level "+str(i+1)+" I added feature "+str(feature_to_add_at_this_level)+" to current set")
         else:
             print('\nStopping the search because we didnt find better accuracy here.')
@@ -121,7 +159,6 @@ def welcome():
     return data
 
 def user_choice(data):
-
     print("Type the number of the algorithm you want to run.")
     print("1) Forward Selection \n2) Backward Elimination")
     choice = int(input())
@@ -131,19 +168,22 @@ def user_choice(data):
         start = time.time()
         feature_search_demo(data,False)
         end = time.time()
-        print("Time to find best features: "+str(start-end))
+        print("Time to find best features: "+str(end-start))
     elif choice == 2:
         print("Backward Elimination chosen")
+        # starting time
+        start = time.time()
+        backward_elimination_demo(data,True)
+        end = time.time()
+        print("Time to find best features: "+str(end-start))
+
     else:
         print("Error in input! Please select 1 or 2")
             
 def main():
-    
-
     print(" ------------------------------- ")
     data = welcome()
     user_choice(data)
-    #feature_search_demo(data)
 
 if __name__ == "__main__":
     main()
